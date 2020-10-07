@@ -1,0 +1,9 @@
+Funcionalidades Vue.JS
+
+-Principais Funcionalidades:
+*Data Biding (Permite sincronia dos dados)
+*Reatividade (Atualizacao dos dados simultaneamente)
+*Eventos (Eventos de dados de usuario)
+*Componentizacao (Separa funcioanlidades)
+*Roteamento (Single page aplication, navegacao) 
+*Gestao de Estado e muito mais (Manipular dados, view x)
