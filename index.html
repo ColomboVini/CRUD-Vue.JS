@@ -77,7 +77,16 @@
 
             methods:{
                 saveContact(contact){
-                    console.log(contact)
+                    let contact = localStorage.getItem('contactsApp');
+
+                    if(contacts){
+                        contacts = JSON.parse(contacts);
+                        contacts.push(contact);
+                    } else{
+                        contacts = [contact];
+                    }
+
+                    localStorage.setItem('contactsApp', JSON.stringify(contacts))
                 }
 
             }
