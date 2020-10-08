@@ -34,7 +34,8 @@
                     </div>
 
                     <div class="form-group ml-1">
-                        <button class="btn btn-lg btn-rounded btn-success" v-on:click.prevent="saveContact(contact)">Criar Contato</button>
+                        <button v-if="!isEdit" class="btn btn-lg btn-rounded btn-success" v-on:click.prevent="saveContact(contact)">Criar Contato</button>
+                        <button v-if="isEdit" class="btn btn-lg btn-rounded btn-primary" v-on:click.prevent="updateContact(contact)">Atualizar</button>
                     </div>
                 </form>
             </div>
@@ -51,7 +52,7 @@
 
                                 <p class="card-text">{{contact.email}}, {{contact.phone}}</p>
 
-                                <a href="#" class="btn btn-sm btn-primary">EDITAR</a>
+                                <a href="#" class="btn btn-sm btn-primary" @click.prevent="editContact(contact)">EDITAR</a>
                                 <a href="#" class="btn btn-sm btn-danger" @click.prevent="removeContact(contact.id)">DELETAR</a>
                             </div>
 
@@ -74,7 +75,9 @@
                     name: '',
                     email: '',
                     phone: ''
-                }
+                },
+
+                isEdit: false
             },
 
             created(){
@@ -94,7 +97,8 @@
                     }
 
                     this.contacts = contacts;
-                    localStorage.setItem('contactsApp', JSON.stringify(contacts))
+                    localStorage.setItem('contactsApp', JSON.stringify(contacts));
+                    location.reload();
                 },
 
                 removeContact(contactId){
@@ -109,6 +113,28 @@
                     this.contacts = contacts;
 
                     localStorage.setItem('contactsApp', JSON.stringify(contacts));
+                },
+
+                editContact(contact){
+                    this.contact = contact;
+                    this.isEdit = true;
+                },
+
+                updateContact(contact){
+                    let contacts = this.contacts.map(contactMap => {
+                        if(contactMap.id == contact.id){
+                            return contact;
+                        }
+
+                        return contactMap;
+                    });
+                
+                    this.contacts = contacts;
+                    this.isEdit = false;
+
+                    localStorage.setItem('contactsApp', JSON.stringify(contacts));
+
+                    location.reload();
                 }
 
             }
