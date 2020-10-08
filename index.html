@@ -11,6 +11,7 @@
         <div class="row mt-5">
             <div class="col-12 border-bottom mb-5">
                 <h2>{{name}}</h2>
+                <p>{{contactsCount}}</p>
             </div>
 
             <div class="col-4">
@@ -78,6 +79,12 @@
                 },
 
                 isEdit: false
+            },
+
+            computed: {
+                contactsCount() {
+                    return `Voce tem cadastrado ${this.contacts.lenght}`;
+                }
             },
 
             created(){
