@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="form-group ml-1">
-                        <button class="btn btn-lg btn-rounded btn-success" v-on:click="showContact">Criar Contato</button>
+                        <button class="btn btn-lg btn-rounded btn-success" v-on:click.prevent="saveContact(contact)">Criar Contato</button>
                     </div>
                 </form>
             </div>
@@ -73,7 +73,15 @@
                     email: '',
                     phone: ''
                 }
+            },
+
+            methods:{
+                saveContact(contact){
+                    console.log(contact)
+                }
+
             }
+
         });
     </script>
 
